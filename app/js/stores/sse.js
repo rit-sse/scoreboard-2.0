@@ -58,21 +58,9 @@ class SSEStore {
     this.committees = payload;
     this.status = null;
     this.err = null;
-
   }
 
   onGetCommitteesFailed(err) {
-    this.setError(err);
-  }
-
-  onGetEventsSuccess(payload) {
-    this.events = payload;
-    this.status = null;
-    this.err = null;
-    History.pushState(this.filters, 'SSE Events', `?${querystring.stringify(this.filters)}`);
-  }
-
-  onGetEventsFailed(err) {
     this.setError(err);
   }
 
