@@ -1,21 +1,18 @@
 'use strict';
 
 import React from 'react';
-import AltContainer from 'alt/AltContainer';
+import { Provider } from 'react-redux';
 import routes from './routes';
-import SSEStore from './stores/sse';
-import SelectActions from './actions/select';
+import store from './store';
 
 window.onload = () =>  {
   gapi.load('auth2', () => {
-    Router.run(routes, (Handler, state) => {
-      SelectActions.changeRoute(state);
+    Router.run(routes, Router.HistoryLocation, (Handler, routerState) => {
       React.render(
-        <AltContainer
-          store={SSEStore}
-          component={Handler}
-          actions={SelectActions}
-        />, document.getElementById('app')
+        <Provider store={store}>
+          {() => <Handler routerState={routerState} />}
+        </Provider>,
+        document.getElementById('app')
       );
     });
   });

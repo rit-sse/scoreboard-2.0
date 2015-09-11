@@ -26,7 +26,6 @@
   },
   "homepage": "https://github.com/rit-sse/scoreboard-2.0",
   "dependencies": {
-    "alt": "^0.17.1",
     "babel": "^5.8.21",
     "babelify": "^6.2.0",
     "browserify": "^11.0.1",
@@ -37,7 +36,10 @@
     "gulp-uglify": "^1.2.0",
     "react": "^0.13.3",
     "react-bootstrap": "^0.24.5",
+    "react-redux": "^2.1.1",
     "react-router": "^0.13.3",
+    "redux": "^2.0.0",
+    "redux-thunk": "^0.1.0",
     "require-dir": "^0.3.0",
     "sse-api-client": "rit-sse/api-client",
     "vinyl-buffer": "^1.0.0",
