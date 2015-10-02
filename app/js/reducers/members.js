@@ -1,13 +1,13 @@
 'use strict';
 
 import {
-  GET_MEMBERSHIPS_SUCCESS,
-} from '../actions/memberships';
+  GET_MEMBERS_SUCCESS,
+} from '../actions/members';
 
 export default function memberships(state=[], action) {
   switch (action.type) {
-  case GET_MEMBERSHIPS_SUCCESS:
-    return action.memberships;
+  case GET_MEMBERS_SUCCESS:
+    return action.members;
   default:
     return state;
   }

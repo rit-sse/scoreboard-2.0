@@ -12,7 +12,6 @@ function getMembershipsSuccess(memberships) {
   };
 }
 
-
 function getMembershipsFailure(error) {
   return {
     type: GET_MEMBERSHIPS_FAILURE,
@@ -20,9 +19,9 @@ function getMembershipsFailure(error) {
   };
 }
 
-export function getMemberships(active) {
+export function getMemberships(active, page) {
   return dispatch => {
-    return api.Memberships.all({ active })
+    return api.Memberships.all({ active, page })
       .then(body => dispatch(getMembershipsSuccess(body.data)))
       .catch(error => dispatch(getMembershipsFailure(error)));
   };
