@@ -1,11 +1,16 @@
 'use strict';
 
-import { Route, DefaultRoute } from 'react-router';
+import React from 'react';
+import { Route, IndexRoute } from 'react-router';
+import App from './components/app';
+import Home from './components/home';
+import Memberships from './components/memberships';
+import Member from './components/member';
 
 export default (
-  <Route handler={App} path='/'>
-    <DefaultRoute handler={Home} />
-    <Route name='membershipsj' handler={Memberships} />
-    <Route name='member' path='/:dce' handler={RecentUsers} />
+  <Route component={App} path='/scoreboard'>
+    <IndexRoute component={Home} />
+    <Route path='/scoreboard/memberships' component={Memberships} />
+    <Route path='/scoreboard/members/:dce' component={Member} />
   </Route>
 );
