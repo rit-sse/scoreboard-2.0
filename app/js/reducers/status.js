@@ -10,7 +10,6 @@ import {
 import { GET_COMMITTEES_FAILURE } from '../actions/committees';
 import { GET_MEMBERSHIPS_FAILURE } from '../actions/memberships';
 import { GET_MEMBERS_FAILURE } from '../actions/members';
-import { GET_TERMS_FAILURE } from '../actions/terms';
 
 export default function status(state = { err: null, notice: null }, action) {
   switch (action.type) {
@@ -29,7 +28,6 @@ export default function status(state = { err: null, notice: null }, action) {
   case GET_COMMITTEES_FAILURE:
   case GET_MEMBERSHIPS_FAILURE:
   case GET_MEMBERS_FAILURE:
-  case GET_TERMS_FAILURE:
     return Object.assign({}, state, {
       err: action.error,
       notice: null,
