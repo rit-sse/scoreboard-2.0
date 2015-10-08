@@ -3,6 +3,7 @@
 import React from 'react';
 import crypto from 'crypto';
 import { connect } from 'react-redux';
+import { getMembers } from '../actions/members';
 
 function mapStateToProps(state) {
   return {
@@ -18,8 +19,12 @@ class Home extends React.Component {
     this.row = this.row.bind(this);
   }
 
+  componentDidMount() {
+    this.props.dispatch(getMembers());
+  }
+
   gravatar(dce) {
-    const hash = crypto.create.hash('md5').update(`${dce}@rit.edu`).digest('hex');
+    const hash = crypto.createHash('md5').update(`${dce}@rit.edu`).digest('hex');
     return `https://gravatar.com/avatar/${hash}`;
   }
 
@@ -48,21 +53,25 @@ class Home extends React.Component {
         <h2 className='text-center'>High Scores</h2>
         <div className='row'>
           <table className='table table-striped table-bordered'>
-            <tr>
-              <th>#</th>
-              <th>Member</th>
-              <th>Score</th>
-            </tr>
-            {Object
-              .keys(this.props.members)
-              .sort((a, b) => this.props.members[b]-this.props.members[a])
-              .map((member, index) => {
-                if (index < 10 || this.state.showAll ) {
-                  return this.row(member, index);
-                }
-                return <span />;
-              })
-            }
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Member</th>
+                <th>Score</th>
+              </tr>
+            </thead>
+            <tbody>
+              {Object
+                .keys(this.props.members)
+                .sort((a, b) => this.props.members[b]-this.props.members[a])
+                .map((member, index) => {
+                  if (index < 10 || this.state.showAll ) {
+                    return this.row(member, index);
+                  }
+                  return <span />;
+                })
+              }
+            </tbody>
           </table>
         </div>
         <div className='text-center'>
