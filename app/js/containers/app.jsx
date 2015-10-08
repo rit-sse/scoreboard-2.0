@@ -65,7 +65,6 @@ class ScoreboardApp extends React.Component {
                 Scoreboard
                 <small> SSE Membership Tracker</small>
               </Link>
-              {this.props.children}
             </h1>
             <ul className='list-inline bottom-align hidden-xs'>
               <li>
@@ -76,6 +75,7 @@ class ScoreboardApp extends React.Component {
             </ul>
           </div>
         </div>
+        {this.props.children}
       </div>
     );
   }
