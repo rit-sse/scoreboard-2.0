@@ -16,7 +16,7 @@ function signInSuccess(officer) {
 
 function signInFailed(error) {
   return {
-    type: SIGN_IN_SUCCESS,
+    type: SIGN_IN_FAILURE,
     error,
   };
 }
