@@ -5,7 +5,7 @@ import {
   SIGN_OUT_SUCCESS,
 } from '../actions/auth';
 
-export default function auth(state = { }, action) {
+export default function auth(state = { signedIn: false }, action) {
   switch (action.type) {
   case SIGN_IN_SUCCESS:
     return { signedIn: true, primary: action.officer.primary };

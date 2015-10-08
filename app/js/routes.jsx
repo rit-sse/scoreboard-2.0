@@ -2,10 +2,10 @@
 
 import React from 'react';
 import { Route, IndexRoute } from 'react-router';
-import App from './components/app';
-import Home from './components/home';
-import Memberships from './components/memberships';
-import Member from './components/member';
+import App from './containers/app';
+import Home from './containers/home';
+import Memberships from './containers/memberships';
+import Member from './containers/member';
 
 export default (
   <Route component={App} path='/scoreboard'>
