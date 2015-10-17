@@ -2,12 +2,45 @@
 
 import {
   GET_MEMBERSHIPS_SUCCESS,
+  SORT_MEMBERSHIPS,
 } from '../actions/memberships';
 
-export default function memberships(state=[], action) {
+function value(obj, keys) {
+  return keys.reduce((cur, key) => cur[key], obj);
+}
+
+function sort(a, b, keys, ascending) {
+  const [aValue, bValue] = [value(a, keys), value(b, keys)];
+  if (ascending) {
+    if (aValue < bValue) {
+      return -1;
+    }
+    if (aValue > bValue) {
+      return 1;
+    }
+    return 0;
+  }
+  if (aValue < bValue) {
+    return 1;
+  }
+  if (aValue > bValue) {
+    return -1;
+  }
+  return 0;
+}
+
+export default function memberships(state={ list: [], ascending: true, fields: ['startDate'] }, action) {
   switch (action.type) {
   case GET_MEMBERSHIPS_SUCCESS:
-    return action.memberships;
+    return Object.assign({}, state, {
+      list: action.memberships.sort((a, b) => sort(a, b, state.fields, state.ascending) ),
+    });
+  case SORT_MEMBERSHIPS:
+    return Object.assign({}, state, {
+      list: state.list.sort((a, b) => sort(a, b, action.fields, action.ascending) ),
+      ascending: action.ascending,
+      fields: action.fields,
+    });
   default:
     return state;
   }

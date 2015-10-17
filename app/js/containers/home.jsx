@@ -25,7 +25,7 @@ class Home extends React.Component {
 
   gravatar(dce) {
     const hash = crypto.createHash('md5').update(`${dce}@rit.edu`).digest('hex');
-    return `https://gravatar.com/avatar/${hash}`;
+    return `https://gravatar.com/avatar/${hash}?d=mm`;
   }
 
   row(member, index) {
