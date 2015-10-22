@@ -47,7 +47,7 @@ class ScoreboardApp extends React.Component {
     if (this.props.auth.primary) {
       return (
         <li>
-          <Link to='/scoreboard/approve'>Approve</Link>
+          <Link to='/scoreboard/memberships/approve'>Approve</Link>
         </li>
       );
     }

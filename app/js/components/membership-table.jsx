@@ -1,8 +1,6 @@
 'use strict';
 
 import React from 'react';
-import { getMemberships, sortMemberships } from '../actions/memberships';
-import { connect } from 'react-redux';
 import moment from 'moment';
 
 export default class MembershipTable extends React.Component {
@@ -32,18 +30,21 @@ export default class MembershipTable extends React.Component {
               <th onClick={this.props.sort.bind(this, ['member', 'lastName'])}>Last Name {this.display('member', 'lastName')}</th>
               <th onClick={this.props.sort.bind(this, ['committeeName'])}>Committee {this.display('committeeName')}</th>
               <th onClick={this.props.sort.bind(this, ['reason'])}>Reason {this.display('reason')}</th>
+              {this.props.approve ? <th colSpan='3'>Approve</th> : <span />}
             </tr>
           </thead>
           <tbody>
-            {this.props.memberships.list.map( membership => {
+            {this.props.memberships.list.map( (membership, index) => {
               return(
-                <tr>
+                <tr key={index}>
                   <td>{moment(membership.startDate).format('MM/DD/YYYY')}</td>
                   <td>{membership.userDce}</td>
                   <td></td>
                   <td></td>
                   <td>{membership.committeeName}</td>
                   <td>{membership.reason}</td>
+                  {this.props.approve ? <td><a onClick={this.props.approve.bind(this, membership, index, true)}><i className='fa fa-check' /></a></td> : <span />}
+                  {this.props.approve ? <td><a onClick={this.props.approve.bind(this, membership, index, false)}><i className='fa fa-close' /></a></td> : <span />}
                 </tr>
               );
             })}
