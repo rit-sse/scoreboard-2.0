@@ -20,7 +20,7 @@ class Home extends React.Component {
   }
 
   componentDidMount() {
-    this.props.dispatch(getMembers());
+    this.props.dispatch(getMembers( query.date || new Date()));
   }
 
   gravatar(dce) {

@@ -1,7 +1,7 @@
 'use strict';
 
 import React from 'react';
-import { getMemberships, sortMemberships } from '../actions/memberships';
+import { getMemberships, sortMemberships, approveMembership } from '../actions/memberships';
 import { connect } from 'react-redux';
 import MembershipTable from '../components/membership-table';
 
@@ -11,16 +11,17 @@ function mapStateToProps(state) {
   };
 }
 
-class Memberships extends React.Component {
+class ApproveMemberships extends React.Component {
   constructor() {
     super();
 
-    this.sort= this.sort.bind(this);
+    this.sort = this.sort.bind(this);
+    this.approveHandler = this.approveHandler.bind(this);
   }
 
   componentDidMount() {
     const { query } = this.props.location;
-    this.props.dispatch(getMemberships(query.date || new Date(), query.page || 1));
+    this.props.dispatch(getMemberships(query.date || new Date(), query.page || 1, 'null'));
   }
 
   sort(args) {
@@ -31,19 +32,21 @@ class Memberships extends React.Component {
     }
   }
 
+  approveHandler(membership, index, approve) {
+    this.props.dispatch(approveMembership(membership, index, approve));
+  }
+
   render() {
 
     return (
       <div>
-        <h2 className='text-center'>Memberships</h2>
-        <button className='btn btn-primary pull-right'>
-          <i className='fa fa-download' />
-          Export
-        </button>
+        <h2 className='text-center'>Approve Memberships</h2>
 
         <MembershipTable
           memberships={this.props.memberships}
           sort={this.sort}
+          approve={this.approveHandler}
+          dispatch={this.props.dispatch}
         />
 
       </div>
@@ -51,4 +54,4 @@ class Memberships extends React.Component {
   }
 }
 
-export default connect(mapStateToProps)(Memberships);
+export default connect(mapStateToProps)(ApproveMemberships);

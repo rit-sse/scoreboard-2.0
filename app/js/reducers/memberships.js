@@ -3,6 +3,7 @@
 import {
   GET_MEMBERSHIPS_SUCCESS,
   SORT_MEMBERSHIPS,
+  APPROVE_MEMBERSHIP_SUCCESS,
 } from '../actions/memberships';
 
 function value(obj, keys) {
@@ -40,6 +41,10 @@ export default function memberships(state={ list: [], ascending: true, fields: [
       list: state.list.sort((a, b) => sort(a, b, action.fields, action.ascending) ),
       ascending: action.ascending,
       fields: action.fields,
+    });
+  case APPROVE_MEMBERSHIP_SUCCESS:
+    return Object.assign({}, state, {
+      list: state.list.splice(action.index, 1),
     });
   default:
     return state;
