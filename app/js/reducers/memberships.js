@@ -42,6 +42,10 @@ export default function memberships(state={ list: [], ascending: true, fields: [
       ascending: action.ascending,
       fields: action.fields,
     });
+  case ADD_MEMBERSHIP_SUCCESS:
+    return Object.assign({}, state, {
+      list: state.list.concat([action.membership]).sort((a, b) => sort(a, b, state.fields, state.ascending) ),
+    });
   case APPROVE_MEMBERSHIP_SUCCESS:
     return Object.assign({}, state, {
       list: state.list.splice(action.index, 1),

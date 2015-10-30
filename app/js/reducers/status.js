@@ -28,6 +28,7 @@ export default function status(state = { err: null, notice: null }, action) {
   case GET_COMMITTEES_FAILURE:
   case GET_MEMBERSHIPS_FAILURE:
   case APPROVE_MEMBERSHIP_FAILURE:
+  case ADD_MEMBERSHIP_FAILURE:
   case GET_MEMBERS_FAILURE:
     return Object.assign({}, state, {
       err: action.error,
