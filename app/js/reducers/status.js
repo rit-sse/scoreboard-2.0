@@ -8,7 +8,11 @@ import {
 } from '../actions/auth';
 
 import { GET_COMMITTEES_FAILURE } from '../actions/committees';
-import { GET_MEMBERSHIPS_FAILURE, APPROVE_MEMBERSHIP_FAILURE } from '../actions/memberships';
+import {
+  GET_MEMBERSHIPS_FAILURE,
+  APPROVE_MEMBERSHIP_FAILURE,
+  ADD_MEMBERSHIP_FAILURE,
+} from '../actions/memberships';
 import { GET_MEMBERS_FAILURE } from '../actions/members';
 
 export default function status(state = { err: null, notice: null }, action) {

@@ -4,6 +4,7 @@ import {
   GET_MEMBERSHIPS_SUCCESS,
   SORT_MEMBERSHIPS,
   APPROVE_MEMBERSHIP_SUCCESS,
+  ADD_MEMBERSHIP_SUCCESS,
 } from '../actions/memberships';
 
 function value(obj, keys) {
