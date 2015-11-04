@@ -96,7 +96,7 @@ export default class AddModal extends React.Component {
             </div>
           </div>
           <div className='form-group'>
-            <label className='control-label col-sm-2' htmlFor='startDate'>Start Date</label>
+            <label className='control-label col-sm-2' htmlFor='endDate'>End Date</label>
             <div className='col-sm-10'>
               <div className='radio-inline'>
                 <label>
@@ -107,7 +107,7 @@ export default class AddModal extends React.Component {
                     id='radio-day'
                     value='date'
                     onClick={() => this.setState({ endDate: 'date' })}/>
-                  Choose End Date
+                  Choose Date
                 </label>
               </div>
               <div className='radio-inline'>
@@ -119,7 +119,7 @@ export default class AddModal extends React.Component {
                     id='radio-week'
                     value='week'
                     onClick={() => this.setState({ endDate: 'week' })}/>
-                  Choose duration
+                  Choose Duration
                 </label>
               </div>
               {this.endDate()}
