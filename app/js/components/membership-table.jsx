@@ -25,6 +25,7 @@ export default class MembershipTable extends React.Component {
           <thead>
             <tr>
               <th onClick={this.props.sort.bind(this, ['startDate'])}>Date Earned {this.display('startDate')}</th>
+              <th onClick={this.props.sort.bind(this, ['endDate'])}>End Date {this.display('endDate')}</th>
               <th onClick={this.props.sort.bind(this, ['userDce'])}>DCE {this.display('userDce')}</th>
               <th onClick={this.props.sort.bind(this, ['member', 'firstName'])}>First Name {this.display('member', 'firstName')}</th>
               <th onClick={this.props.sort.bind(this, ['member', 'lastName'])}>Last Name {this.display('member', 'lastName')}</th>
@@ -38,6 +39,7 @@ export default class MembershipTable extends React.Component {
               return(
                 <tr key={membership.id}>
                   <td>{moment(membership.startDate).format('MM/DD/YYYY')}</td>
+                  <td>{moment(membership.endDate).format('MM/DD/YYYY')}</td>
                   <td>{membership.userDce}</td>
                   <td></td>
                   <td></td>

@@ -28,7 +28,13 @@ export default class AddModal extends React.Component {
       }, {});
 
     membership.startDate = moment.tz(this.refs.startDate.getValue(), 'America/New_York').utc().toDate();
-    membership.endDate = moment.tz(this.refs.endDate.getValue(), 'America/New_York').utc().toDate();
+    if (this.state.endDate === 'date') {
+      membership.endDate = moment.tz(this.refs.endDate.getValue(), 'America/New_York').utc().toDate();
+    } else {
+      console.log(this.refs.duration.value)
+      membership.endDate = moment.tz(this.refs.startDate.getValue(), 'America/New_York').utc().add(this.refs.duration.getDOMNode().value, 'weeks');
+      console.log(membership.endDate)
+    }
     this.props.close();
     this.props.submit(membership);
   }
@@ -38,16 +44,16 @@ export default class AddModal extends React.Component {
       return (
         <div>
           <DateTimeField
-            dateTime={moment().format('MM/DD/YYYY')}
+            dateTime={moment().format()}
+            format=''
             ref='endDate'
-            format='MM/DD/YYYY'
             inputFormat='YYYY-MM-DD'
             mode='date' />
         </div>
       );
     }
     return (
-      <input className='form-control' type='text' id='duration' placeholder='Duration (in weeks)' ref='name' />
+      <input className='form-control' type='number' id='duration' placeholder='Duration (in weeks)' ref='duration' />
     );
   }
 
@@ -84,9 +90,9 @@ export default class AddModal extends React.Component {
             <label className='control-label col-sm-2' htmlFor='startDate'>Start Date</label>
             <div className='col-sm-10'>
               <DateTimeField
-                dateTime={moment().format('MM/DD/YYYY')}
+                dateTime={moment().format()}
+                format=''
                 ref='startDate'
-                format='MM/DD/YYYY'
                 inputFormat='YYYY-MM-DD'
                 mode='date' />
             </div>
@@ -97,7 +103,7 @@ export default class AddModal extends React.Component {
               <div className='radio-inline'>
                 <label>
                   <input
-                    checked
+                    checked={this.state.endDate === 'date'}
                     type='radio'
                     name='radios'
                     id='radio-day'
@@ -109,6 +115,7 @@ export default class AddModal extends React.Component {
               <div className='radio-inline'>
                 <label>
                   <input
+                    checked={this.state.endDate === 'week'}
                     type='radio'
                     name='radios'
                     id='radio-week'
