@@ -31,9 +31,7 @@ export default class AddModal extends React.Component {
     if (this.state.endDate === 'date') {
       membership.endDate = moment.tz(this.refs.endDate.getValue(), 'America/New_York').utc().toDate();
     } else {
-      console.log(this.refs.duration.value)
       membership.endDate = moment.tz(this.refs.startDate.getValue(), 'America/New_York').utc().add(this.refs.duration.getDOMNode().value, 'weeks');
-      console.log(membership.endDate)
     }
     this.props.close();
     this.props.submit(membership);
