@@ -41,8 +41,8 @@ export default class MembershipTable extends React.Component {
                   <td>{moment(membership.startDate).format('MM/DD/YYYY')}</td>
                   <td>{moment(membership.endDate).format('MM/DD/YYYY')}</td>
                   <td>{membership.userDce}</td>
-                  <td></td>
-                  <td></td>
+                  <td>{membership.user.firstName}</td>
+                  <td>{membership.user.lastName}</td>
                   <td>{membership.committeeName}</td>
                   <td>{membership.reason}</td>
                   {this.props.approve ? <td><a onClick={this.props.approve.bind(this, membership, index, true)}><i className='fa fa-check' /></a></td> : <span />}

@@ -38,11 +38,11 @@ class Home extends React.Component {
             <img src={this.gravatar(member)} width='25px' />
           </span>
           <span className='inline-block vert-middle' style={{ marginLeft: '10px' }}>
-            {member}
+            {this.props.members[member][1]}
           </span>
         </td>
         <td>
-          {this.props.members[member]}
+          {this.props.members[member][0]}
         </td>
       </tr>
     );
@@ -64,7 +64,7 @@ class Home extends React.Component {
             <tbody>
               {Object
                 .keys(this.props.members)
-                .sort((a, b) => this.props.members[b]-this.props.members[a])
+                .sort((a, b) => this.props.members[b][0]-this.props.members[a][0])
                 .map((member, index) => {
                   if (index < 10 || this.state.showAll ) {
                     return this.row(member, index);

@@ -24,8 +24,8 @@ export function getMembers(active) {
     return api.Memberships.all({ active }, true)
       .then(body => {
         return body.reduce((members, membership) => {
-          members[membership.userDce] = members[membership.userDce] || 0;
-          members[membership.userDce]++;
+          members[membership.userDce] = members[membership.userDce] || [0, `${membership.user.firstName} ${membership.user.lastName}`];
+          members[membership.userDce][0]++;
           return members;
         }, {});
       })
