@@ -40,6 +40,7 @@
     "moment-timezone": "^0.4.1",
     "react": "^0.13.3",
     "react-bootstrap": "^0.24.5",
+    "react-bootstrap-datetimepicker": "0.0.21",
     "react-redux": "^2.1.1",
     "react-router": "1.0.0-rc1",
     "redux": "^2.0.0",

@@ -7,6 +7,7 @@ import LogIn from '../components/log-in';
 import { signOut } from '../actions/auth';
 import AddModal from '../components/add-modal';
 import { addMembership } from '../actions/memberships';
+import { getCommittees } from '../actions/committees';
 
 function mapStateToProps(state) {
   return {
@@ -27,6 +28,11 @@ class ScoreboardApp extends React.Component {
     this.renderAdd = this.renderAdd.bind(this);
     this.showAdd = this.showAdd.bind(this);
     this.hideAdd = this.hideAdd.bind(this);
+    this.addMembership = this.addMembership.bind(this);
+  }
+
+  componentDidMount() {
+    this.props.dispatch(getCommittees());
   }
 
   showAdd() {
@@ -39,8 +45,7 @@ class ScoreboardApp extends React.Component {
   }
 
   addMembership(membership) {
-    addMembership(membership);
-    this.hideNew();
+    this.props.dispatch(addMembership(membership));
   }
 
   renderLogIn() {

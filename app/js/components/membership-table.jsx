@@ -1,4 +1,4 @@
-'use strict';
+ 'use strict';
 
 import React from 'react';
 import moment from 'moment';
@@ -36,7 +36,7 @@ export default class MembershipTable extends React.Component {
           <tbody>
             {this.props.memberships.list.map( (membership, index) => {
               return(
-                <tr key={index}>
+                <tr key={membership.id}>
                   <td>{moment(membership.startDate).format('MM/DD/YYYY')}</td>
                   <td>{membership.userDce}</td>
                   <td></td>

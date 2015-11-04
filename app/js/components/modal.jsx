@@ -15,7 +15,7 @@ export default class FormModal extends React.Component {
           {this.props.children}
         </Modal.Body>
           <Modal.Footer>
-            <Button onClick={this.close}>Close</Button>
+            <Button onClick={this.props.close}>{this.props.closeText}</Button>
             <Button onClick={this.props.submit} bsStyle='primary'>{this.props.submitText}</Button>
           </Modal.Footer>
       </Modal>
