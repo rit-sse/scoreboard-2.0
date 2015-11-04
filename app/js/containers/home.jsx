@@ -20,6 +20,7 @@ class Home extends React.Component {
   }
 
   componentDidMount() {
+    const { query } = this.props.location;
     this.props.dispatch(getMembers( query.date || new Date()));
   }
 

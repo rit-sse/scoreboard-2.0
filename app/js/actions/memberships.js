@@ -6,6 +6,8 @@ export const GET_MEMBERSHIPS_SUCCESS = 'GET_MEMBERSHIPS_SUCCESS';
 export const GET_MEMBERSHIPS_FAILURE = 'GET_MEMBERSHIPS_FAILURE';
 export const APPROVE_MEMBERSHIP_SUCCESS = 'APPROVE_MEMBERSHIP_SUCCESS';
 export const APPROVE_MEMBERSHIP_FAILURE = 'APPROVE_MEMBERSHIP_FAILURE';
+export const ADD_MEMBERSHIP_SUCCESS = 'ADD_MEMBERSHIP_SUCCESS';
+export const ADD_MEMBERSHIP_FAILURE = 'ADD_MEMBERSHIP_FAILURE';
 export const SORT_MEMBERSHIPS = 'SORT_MEMBERSHIPS';
 
 function getMembershipsSuccess(memberships) {
@@ -36,6 +38,20 @@ function approveFailure(error) {
   };
 }
 
+function addSuccess(membership) {
+  return {
+    type: ADD_MEMBERSHIP_SUCCESS,
+    membership,
+  };
+}
+
+function addFailure(error) {
+  return {
+    type: ADD_MEMBERSHIP_FAILURE,
+    error,
+  };
+}
+
 export function getMemberships(active, page, approved=true) {
   return dispatch => {
     return api.Memberships.all({ active, page, approved })
@@ -47,7 +63,6 @@ export function getMemberships(active, page, approved=true) {
       .catch(error => dispatch(getMembershipsFailure(error)));
   };
 }
-
 
 export function sortMemberships(fields, ascending) {
   return {
@@ -62,5 +77,13 @@ export function approveMembership(membership, index, approved) {
     return api.Memberships.update(membership.id, { approved })
       .then(() => dispatch(approveSuccess(index)))
       .catch(error => dispatch(approveFailure(error)));
+  };
+}
+
+export function addMembership(membership) {
+  return dispatch => {
+    return api.Memberships.create(membership)
+      .then(m => dispatch(addSuccess(m)))
+      .catch(error => dispatch(addFailure(error)));
   };
 }
