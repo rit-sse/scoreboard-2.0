@@ -30,11 +30,13 @@ function sort(a, b, keys, ascending) {
   return 0;
 }
 
-export default function memberships(state={ list: [], ascending: true, fields: ['startDate'] }, action) {
+export default function memberships(state={ list: [], ascending: true, fields: ['startDate'], total: 0, perPage: 15 }, action) {
   switch (action.type) {
   case GET_MEMBERSHIPS_SUCCESS:
     return Object.assign({}, state, {
-      list: action.memberships.sort((a, b) => sort(a, b, state.fields, state.ascending) ),
+      list: action.memberships.data.sort((a, b) => sort(a, b, state.fields, state.ascending) ),
+      total: action.memberships.total,
+      perPage: action.memberships.perPage,
     });
   case SORT_MEMBERSHIPS:
     return Object.assign({}, state, {
