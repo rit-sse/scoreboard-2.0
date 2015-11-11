@@ -4,6 +4,7 @@ import React from 'react';
 import { getMemberships, sortMemberships, approveMembership } from '../actions/memberships';
 import { connect } from 'react-redux';
 import MembershipTable from '../components/membership-table';
+import Pagination from '../components/pagination';
 
 function mapStateToProps(state) {
   return {
@@ -22,6 +23,13 @@ class ApproveMemberships extends React.Component {
   componentDidMount() {
     const { query } = this.props.location;
     this.props.dispatch(getMemberships(query.date || new Date(), query.page || 1, 'null'));
+  }
+
+  componentWillReceiveProps(newProps) {
+    if (this.props.location.query.page !== newProps.location.query.page) {
+      const { query } = newProps.location;
+      this.props.dispatch(getMemberships(query.date || new Date(), query.page || 1, 'null'));
+    }
   }
 
   sort(args) {
@@ -48,6 +56,15 @@ class ApproveMemberships extends React.Component {
           approve={this.approveHandler}
           dispatch={this.props.dispatch}
         />
+
+        <div className='text-center'>
+          <Pagination
+            total={this.props.memberships.total}
+            perPage={this.props.memberships.perPage}
+            currentPage={this.props.location.query.page || 1}
+            path='memberships/approve'
+          />
+        </div>
 
       </div>
     );

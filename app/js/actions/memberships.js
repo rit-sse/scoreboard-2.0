@@ -55,10 +55,13 @@ function addFailure(error) {
 export function getMemberships(active, page, approved=true) {
   return dispatch => {
     return api.Memberships.all({ active, page, approved })
-      .then(body => body.data.map(element => {
-        element.startDate = new Date(element.startDate);
-        return element;
-      }))
+      .then(body => {
+        body.data = body.data.map(element => {
+          element.startDate = new Date(element.startDate);
+          return element;
+        });
+        return body;
+      })
       .then(data => dispatch(getMembershipsSuccess(data, approved)))
       .catch(error => dispatch(getMembershipsFailure(error)));
   };
