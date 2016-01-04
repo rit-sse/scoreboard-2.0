@@ -21,7 +21,7 @@ function getCommitteesFailed(error) {
 
 export function getCommittees() {
   return dispatch => {
-    return api.Committees.all({ /*active: new Date()*/ }, true)
+    return api.Committees.all({ /* active: new Date() */ }, true)
       .then(body => dispatch(getCommitteesSuccess(body)))
       .catch(error => dispatch(getCommitteesFailed(error)));
   };
