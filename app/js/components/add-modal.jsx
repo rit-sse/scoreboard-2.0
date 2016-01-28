@@ -61,8 +61,8 @@ export default class AddModal extends React.Component {
         show={this.props.show}
         close={this.props.close}
         closeText='Cancel'
-        submitText={`${this.props.title} Memberships`}
-        header={`${this.props.title} Memberships`}
+        submitText={`${this.props.title} Membership`}
+        header={`${this.props.title} Membership`}
         submit={this.submit}
       >
         <form className='form-horizontal'>
