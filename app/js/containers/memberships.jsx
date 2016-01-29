@@ -44,12 +44,6 @@ class Memberships extends React.Component {
     return (
       <div>
         <h2 className='text-center'>Memberships</h2>
-        <div className='pull-right'>
-          <button className='btn btn-primary'>
-            <i className='fa fa-download' />
-            Export
-          </button>
-        </div>
         <MembershipTable
           memberships={this.props.memberships}
           sort={this.sort}
