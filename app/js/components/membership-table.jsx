@@ -27,8 +27,8 @@ export default class MembershipTable extends React.Component {
               <th onClick={this.props.sort.bind(this, ['startDate'])}>Date Earned {this.display('startDate')}</th>
               <th onClick={this.props.sort.bind(this, ['endDate'])}>End Date {this.display('endDate')}</th>
               <th onClick={this.props.sort.bind(this, ['userDce'])}>DCE {this.display('userDce')}</th>
-              <th onClick={this.props.sort.bind(this, ['member', 'firstName'])}>First Name {this.display('member', 'firstName')}</th>
-              <th onClick={this.props.sort.bind(this, ['member', 'lastName'])}>Last Name {this.display('member', 'lastName')}</th>
+              <th onClick={this.props.sort.bind(this, ['user', 'firstName'])}>First Name {this.display('user', 'firstName')}</th>
+              <th onClick={this.props.sort.bind(this, ['user', 'lastName'])}>Last Name {this.display('user', 'lastName')}</th>
               <th onClick={this.props.sort.bind(this, ['committeeName'])}>Committee {this.display('committeeName')}</th>
               <th onClick={this.props.sort.bind(this, ['reason'])}>Reason {this.display('reason')}</th>
               {this.props.approve ? <th colSpan='3'>Approve</th> : <span />}
