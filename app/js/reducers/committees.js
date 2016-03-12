@@ -1,5 +1,3 @@
-'use strict';
-
 import {
   GET_COMMITTEES_SUCCESS,
 } from '../actions/committees';

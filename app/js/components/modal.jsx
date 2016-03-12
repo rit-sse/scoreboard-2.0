@@ -1,12 +1,10 @@
-'use strict';
-
 import React from 'react';
 import Modal from 'react-bootstrap/lib/Modal';
 import Button from 'react-bootstrap/lib/Button';
 
 export default class FormModal extends React.Component {
   render() {
-    return(
+    return (
       <Modal show={this.props.show} onHide={this.props.close}>
         <Modal.Header closeButton>
           <Modal.Title>{this.props.header}</Modal.Title>

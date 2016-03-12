@@ -1,6 +1,10 @@
 machine:
   node:
-    version: 0.12.0
+    version: 5.5.0
+
+dependencies:
+  post:
+    - npm install eslint@2.2.0 #actual garbage
 
 test:
   override:

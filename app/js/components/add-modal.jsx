@@ -1,5 +1,3 @@
-'use strict';
-
 import React from 'react';
 import Modal from './modal';
 import DateTimeField from 'react-bootstrap-datetimepicker';
@@ -56,7 +54,7 @@ export default class AddModal extends React.Component {
   }
 
   render() {
-    return(
+    return (
       <Modal
         show={this.props.show}
         close={this.props.close}
