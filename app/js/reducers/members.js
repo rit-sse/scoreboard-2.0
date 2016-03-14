@@ -1,5 +1,3 @@
-'use strict';
-
 import {
   GET_MEMBERS_SUCCESS,
 } from '../actions/members';

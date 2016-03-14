@@ -1,5 +1,3 @@
-'use strict';
-
 import api from '../api';
 
 export const GET_COMMITTEES_SUCCESS = 'GET_COMMITTEES_SUCCESS';

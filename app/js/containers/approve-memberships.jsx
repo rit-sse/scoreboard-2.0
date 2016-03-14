@@ -1,5 +1,3 @@
-'use strict';
-
 import React from 'react';
 import { getMemberships, sortMemberships, approveMembership } from '../actions/memberships';
 import { connect } from 'react-redux';
