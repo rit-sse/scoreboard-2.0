@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import LogIn from '../components/log-in';
-import { signOut } from '../actions/auth';
+import { signOut, checkLogin } from '../actions/auth';
 import AddModal from '../components/add-modal';
 import { addMembership } from '../actions/memberships';
 import { getCommittees } from '../actions/committees';
@@ -31,6 +31,7 @@ class ScoreboardApp extends React.Component {
 
   componentDidMount() {
     this.props.dispatch(getCommittees());
+    this.props.dispatch(checkLogin());
   }
 
   showAdd() {
