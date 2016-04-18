@@ -16,10 +16,5 @@ ENV NODE_ENV=production
 COPY ./ /app
 RUN npm run build
 
-RUN npm install http-server -g
-
-WORKDIR /app/dist
-RUN mkdir scoreboard
-RUN mv * ./scoreboard || exit 0
 EXPOSE 8000
-CMD http-server -p 8000 -a 0.0.0.0 -d false
+CMD PORT=8000 npm start
