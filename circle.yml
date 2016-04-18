@@ -1,15 +1,21 @@
 machine:
-  node:
-    version: 5.5.0
+  services:
+    - docker
 
 test:
+  pre:
+    - docker build -t ritsse/scoreboard-2.0:$CIRCLE_BRANCH .
   override:
-    - npm run lint
-    - npm run build
+    - docker run -it ritsse/scoreboard-2.0:$CIRCLE_BRANCH npm run lint 
 
 deployment:
+  development:
+    branch: devlop
+    commands:
+      - docker login -u $DOCKER_USER -p $DOCKER_PASS -e tech@sse.rit.edu
+      - docker push ritsse/scoreboard-2.0:$CIRCLE_BRANCH
   master:
     branch: master
     owner: rit-sse
     commands:
-      - ssh deploy@$SSE_HOST 'cd /docker && docker-compose restart scoreboard nginx'
+      - ssh deploy@$SSE_HOST 'cd /docker && docker-compose restart scoreboard-2.0 nginx'
