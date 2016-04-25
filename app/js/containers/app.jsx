@@ -102,9 +102,10 @@ class ScoreboardApp extends React.Component {
       .all({ active: new Date() }, true)
       .then(body => {
         return body.reduce( (a, m) => {
-          if (a.indexOf(m.userDce) < 0)
+          if (a.indexOf(m.userDce) < 0) {
             a.push(m.userDce);
-          return a;  
+          }
+          return a;
         }, []);
       })
       .then( members => {
@@ -113,7 +114,7 @@ class ScoreboardApp extends React.Component {
   }
 
   saveAs(contents, filename) {
-    let element = document.createElement('a');
+    const element = document.createElement('a');
     element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(contents));
     element.setAttribute('download', filename);
     element.style.display = 'none';
