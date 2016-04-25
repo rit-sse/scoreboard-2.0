@@ -14,7 +14,7 @@ deployment:
     commands:
       - docker login -u $DOCKER_USER -p $DOCKER_PASS -e tech@sse.rit.edu
       - docker push ritsse/scoreboard-2.0:$CIRCLE_BRANCH
-   master:
+  master:
     branch: master
     owner: rit-sse
     commands:
