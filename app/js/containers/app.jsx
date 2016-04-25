@@ -6,6 +6,7 @@ import { signOut, checkLogin } from '../actions/auth';
 import AddModal from '../components/add-modal';
 import { addMembership } from '../actions/memberships';
 import { getCommittees } from '../actions/committees';
+import API from '../api';
 
 function mapStateToProps(state) {
   return {
@@ -27,6 +28,8 @@ class ScoreboardApp extends React.Component {
     this.showAdd = this.showAdd.bind(this);
     this.hideAdd = this.hideAdd.bind(this);
     this.addMembership = this.addMembership.bind(this);
+    this.saveAs = this.saveAs.bind(this);
+    this.downloadFile = this.downloadFile.bind(this);
   }
 
   componentDidMount() {
@@ -93,6 +96,41 @@ class ScoreboardApp extends React.Component {
     return <li><span/></li>;
   }
 
+  downloadFile() {
+    API
+      .Memberships
+      .all({ active: new Date() }, true)
+      .then(body => {
+        return body.reduce( (a, m) => {
+          if (a.indexOf(m.userDce) < 0)
+            a.push(m.userDce);
+          return a;  
+        }, []);
+      })
+      .then( members => {
+        this.saveAs(members.join('\n'), 'memberships.csv');
+      });
+  }
+
+  saveAs(contents, filename) {
+    let element = document.createElement('a');
+    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(contents));
+    element.setAttribute('download', filename);
+    element.style.display = 'none';
+    document.body.appendChild(element);
+    element.click();
+    document.body.removeChild(element);
+  }
+
+  renderDownload() {
+    if (this.props.auth.signedIn) {
+      return (
+        <li>
+          <button className='btn btn-link' onClick={this.downloadFile}>Download this shit</button>
+        </li>
+      );
+    }
+  }
 
   render() {
     return (
@@ -106,6 +144,7 @@ class ScoreboardApp extends React.Component {
               </Link>
             </h1>
             <ul className='list-inline bottom-align hidden-xs'>
+              {this.renderDownload()}
               <li>
                 <Link to='/scoreboard/memberships'>Memberships</Link>
               </li>
