@@ -14,8 +14,9 @@ deployment:
     commands:
       - docker login -u $DOCKER_USER -p $DOCKER_PASS -e tech@sse.rit.edu
       - docker push ritsse/scoreboard-2.0:$CIRCLE_BRANCH
-  master:
+   master:
     branch: master
     owner: rit-sse
     commands:
-      - ssh deploy@$SSE_HOST 'cd /docker && docker-compose restart scoreboard-2.0 nginx'
+      - docker tag ritsse/scoreboard-2.0:$CIRCLE_BRANCH ritsse/scoreboard-2.0
+      - docker push ritsse/scoreboard-2.0
