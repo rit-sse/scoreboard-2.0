@@ -127,7 +127,7 @@ class ScoreboardApp extends React.Component {
     if (this.props.auth.signedIn) {
       return (
         <li>
-          <button className='btn btn-link' onClick={this.downloadFile}>Download this shit</button>
+          <button className='btn btn-link' onClick={this.downloadFile}>Download list of members</button>
         </li>
       );
     }
