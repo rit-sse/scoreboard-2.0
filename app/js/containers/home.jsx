@@ -67,8 +67,9 @@ class Home extends React.Component {
                   if (index < 10 || this.state.showAll ) {
                     return this.row(member, index);
                   }
-                  return <span />;
+                  return false;
                 })
+                .filter(val => val)
               }
             </tbody>
           </table>
