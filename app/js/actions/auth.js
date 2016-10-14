@@ -65,7 +65,8 @@ export function checkLogin() {
         }
         return Promise.reject({ message: 'Need to be an officer to log in' });
       });
-    }).then(p => dispatch(signInSuccess(p)))
+    })
+    .then(p => dispatch(signInSuccess(p)))
     .catch(() => dispatch(signOutSuccess()));
   };
 }
