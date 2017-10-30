@@ -1,3 +1,5 @@
+# [DEPRECATED] Scoreboard is Now Found [Here](https://github.com/rit-sse/OneRepoToRuleThemAll)
+
 # Scoreboard 2.0
 
 The new and improved scoreboard.
