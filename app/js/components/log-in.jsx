@@ -6,7 +6,7 @@ import API from '../api';
 export default class LogIn extends React.Component {
   constructor() {
     super();
-    this.state = { disable_login: true };
+    this.state = { disableLogin: true };
   }
 
   componentDidMount() {
@@ -22,14 +22,14 @@ export default class LogIn extends React.Component {
         auth2.attachClickHandler(this.refs.button.getDOMNode(), {}, googleUser => {
           this.props.dispatch(signIn(googleUser));
         });
-        this.setState({ disable_login: false });
+        this.setState({ disableLogin: false });
       })
       .catch( err => console.log(err) );
   }
 
   render() {
     return (
-      <Button disabled={this.state.disable_login} id='login' bsStyle='primary' ref='button'>
+      <Button disabled={this.state.disableLogin} id='login' bsStyle='primary' ref='button'>
         <i className='fa fa-google'></i> Sign In
       </Button>
     );

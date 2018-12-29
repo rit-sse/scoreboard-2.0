@@ -6,6 +6,7 @@ import { signOut, checkLogin } from '../actions/auth';
 import AddModal from '../components/add-modal';
 import { addMembership } from '../actions/memberships';
 import { getCommittees } from '../actions/committees';
+import { downloadMembers } from '../actions/members';
 
 function mapStateToProps(state) {
   return {
@@ -93,6 +94,15 @@ class ScoreboardApp extends React.Component {
     return <li><span/></li>;
   }
 
+  renderDownload() {
+    if (this.props.auth.signedIn) {
+      return (
+        <li>
+          <button className='btn btn-link' onClick={downloadMembers}>Download list of members</button>
+        </li>
+      );
+    }
+  }
 
   render() {
     return (
@@ -106,6 +116,7 @@ class ScoreboardApp extends React.Component {
               </Link>
             </h1>
             <ul className='list-inline bottom-align hidden-xs'>
+              {this.renderDownload()}
               <li>
                 <Link to='/scoreboard/memberships'>Memberships</Link>
               </li>
